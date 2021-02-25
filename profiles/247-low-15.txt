@@ -41,7 +41,7 @@ Start plotting at 15 seconds
 // Select the heating bias (bottom/top/boost)
 Bias 100/80/60
 // Continue ramping up the temperature using PID
-Display "Phase 2: Pre-Soak Automatic Ramp"
+Display "Phase 2: Pre-Soak Autoramp"
 Ramp temperature to 110C in 80s
 
 // Start the soak phase
@@ -56,7 +56,7 @@ Element duty cycle 100/100/100
 Wait for 10 seconds
 // Select the heating bias (bottom/top/boost)
 Bias 100/80/60
-Display "Phase 5: Reflow Automatic Ramp"
+Display "Phase 5: Reflow Autoramp"
 Ramp temperature to 155C in 60s
 
 // Hold the temperature at peak for a few seconds
