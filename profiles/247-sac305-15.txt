@@ -1,4 +1,4 @@
-Controleo3 Profile
+Controleo3 Profile  // This must be the first item in the file
 
 // Notes:
 // 1. Comment lines can start with # or //
@@ -9,22 +9,23 @@ Controleo3 Profile
 // 6. When reading in profile files, Arduino's Serial Monitor will show debugging information
 
 
-Name "247-LOWTEMP-15"
+// The name of this profile
+Name "247-SAC305-15"
+// The title is displayed in the top-left corner
 Title "Reflow"
-// Show a graph, including the liquid temperature
-Show graph to 165C for 600 seconds
-Graph divider at 137C
+// Show a graph, including the liquidus temperature
+Show graph to 260C for 600 seconds
+Graph divider at 217C
 // The deviation (in Celsius) above which to abort
-Deviation to abort 20C
+Deviation to abort 25C
 // The maximum temperature.  If exceeded, reflow will abort and the oven door opened
-Maximum temperature 190C
+Maximum temperature 260C
 // Set a maximum duty cycle to avoid damage to your oven (bottom/top/boost)
 Maximum duty 100/75/60
 
 
 // Close the oven door if it isn't already
 Close door over 2 seconds
-// Stop the timer for now, until the temperature is above 50C
 Stop timer
 // Wait for the oven to cool to get consistent results
 Display "Waiting for oven to cool to 50~C"
@@ -42,27 +43,31 @@ Start plotting at 15 seconds
 Bias 100/80/60
 // Continue ramping up the temperature using PID
 Display "Phase 2: Pre-Soak Automatic Ramp"
-Ramp temperature to 110C in 80s
+Ramp temperature to 150C in 90s
 
 // Start the soak phase
-Display "Phase 3: Soak @125~C"
+Display "Phase 3: Soak @175~C"
 // Select the heating bias (bottom/top/boost)
 Bias 100/50/20
-Ramp temperature to 125C in 100s
+// Slow increase in temperature during soak
+Ramp temperature to 175C in 100s
 
 // Start the reflow phase
 Display "Phase 4: Reflow Manual Ramp"
+// Force the elements on for a short while to get a quick increase in
+// the temperature of the elements (bottom/top/boost)
+// This will be limited by the "Maximum duty" command above
 Element duty cycle 100/100/100
 Wait for 10 seconds
 // Select the heating bias (bottom/top/boost)
 Bias 100/80/60
 Display "Phase 5: Reflow Automatic Ramp"
-Ramp temperature to 155C in 60s
+Ramp temperature to 245C in 60s
 
 // Hold the temperature at peak for a few seconds
-Display "Phase 6: Reflow @155~C"
+Display "Phase 6: Reflow @250~C"
 // Maintain peak temperature for a short while
-Maintain 155C for 40 seconds
+Maintain 250C for 25 seconds
 // Stop the timer so we know how long the reflow took
 Stop timer
 // Turn the elements off now (bottom/top/boost)
@@ -86,5 +91,7 @@ Wait until below 50C
 
 // Reflow is done now
 Display "Reflow complete!"
+Convection fan off
+Cooling fan off
 // Close the oven door
 Close door over 3 seconds
