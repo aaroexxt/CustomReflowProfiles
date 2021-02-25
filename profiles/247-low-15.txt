@@ -17,7 +17,7 @@ Graph divider at 137C
 // The deviation (in Celsius) above which to abort
 Deviation to abort 20C
 // The maximum temperature.  If exceeded, reflow will abort and the oven door opened
-Maximum temperature 190C
+Maximum temperature 165C
 // Set a maximum duty cycle to avoid damage to your oven (bottom/top/boost)
 Maximum duty 100/75/60
 
