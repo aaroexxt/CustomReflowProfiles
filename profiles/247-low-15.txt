@@ -12,23 +12,24 @@ Controleo3 Profile
 Name "247-LOWTEMP-15"
 Title "Reflow"
 // Show a graph, including the liquid temperature
-Show graph to 165C for 600 seconds
+Show graph to 175C for 600 seconds
 Graph divider at 137C
 // The deviation (in Celsius) above which to abort
 Deviation to abort 20C
 // The maximum temperature.  If exceeded, reflow will abort and the oven door opened
-Maximum temperature 165C
+Maximum temperature 175C
 // Set a maximum duty cycle to avoid damage to your oven (bottom/top/boost)
 Maximum duty 100/75/60
 
 
-// Close the oven door if it isn't already
-Close door over 2 seconds
-// Stop the timer for now, until the temperature is above 50C
+// Open the oven door if it isn't already to let out heat
+Open door over 2 seconds
+Wait for 2 seconds
 Stop timer
 // Wait for the oven to cool to get consistent results
 Display "Waiting for oven to cool to 50~C"
 Wait until below 50C
+Close door over 5 seconds
 
 // Start the reflow
 Display "Phase 1: Pre-Soak Manual Ramp"
@@ -45,7 +46,7 @@ Display "Phase 2: Pre-Soak Autoramp"
 Ramp temperature to 110C in 80s
 
 // Start the soak phase
-Display "Phase 3: Soak @125~C"
+Display "Phase 3: Soak"
 // Select the heating bias (bottom/top/boost)
 Bias 100/50/20
 Ramp temperature to 125C in 100s
@@ -57,12 +58,12 @@ Wait for 10 seconds
 // Select the heating bias (bottom/top/boost)
 Bias 100/80/60
 Display "Phase 5: Reflow Autoramp"
-Ramp temperature to 155C in 60s
+Ramp temperature to 165C in 60s
 
 // Hold the temperature at peak for a few seconds
-Display "Phase 6: Reflow @155~C"
+Display "Phase 6: Reflow Hold"
 // Maintain peak temperature for a short while
-Maintain 155C for 40 seconds
+Maintain 165C for 40 seconds
 // Stop the timer so we know how long the reflow took
 Stop timer
 // Turn the elements off now (bottom/top/boost)

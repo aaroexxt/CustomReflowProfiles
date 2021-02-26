@@ -24,12 +24,14 @@ Maximum temperature 260C
 Maximum duty 100/75/60
 
 
-// Close the oven door if it isn't already
-Close door over 2 seconds
+// Open the oven door if it isn't already to let out heat
+Open door over 2 seconds
+Wait for 2 seconds
 Stop timer
 // Wait for the oven to cool to get consistent results
 Display "Waiting for oven to cool to 50~C"
 Wait until below 50C
+Close door over 5 seconds
 
 // Start the reflow
 Display "Phase 1: Pre-Soak Manual Ramp"
@@ -46,11 +48,11 @@ Display "Phase 2: Pre-Soak Autoramp"
 Ramp temperature to 150C in 90s
 
 // Start the soak phase
-Display "Phase 3: Soak @175~C"
+Display "Phase 3: Soak"
 // Select the heating bias (bottom/top/boost)
 Bias 100/50/20
 // Slow increase in temperature during soak
-Ramp temperature to 175C in 100s
+Ramp temperature to 185C in 100s
 
 // Start the reflow phase
 Display "Phase 4: Reflow Manual Ramp"
@@ -65,9 +67,9 @@ Display "Phase 5: Reflow Autoramp"
 Ramp temperature to 245C in 60s
 
 // Hold the temperature at peak for a few seconds
-Display "Phase 6: Reflow @250~C"
+Display "Phase 6: Reflow Hold"
 // Maintain peak temperature for a short while
-Maintain 250C for 25 seconds
+Maintain 250C for 20 seconds
 // Stop the timer so we know how long the reflow took
 Stop timer
 // Turn the elements off now (bottom/top/boost)
