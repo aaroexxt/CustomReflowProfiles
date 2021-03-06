@@ -27,8 +27,8 @@ Open door over 2 seconds
 Wait for 2 seconds
 Stop timer
 // Wait for the oven to cool to get consistent results
-Display "Waiting for oven to cool to 50~C"
-Wait until below 50C
+Display "Waiting for oven to cool to 80~C"
+Wait until below 80C
 Close door over 5 seconds
 
 // Start the reflow
